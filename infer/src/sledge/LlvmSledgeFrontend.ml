@@ -1464,16 +1464,16 @@ let xlate_instr :
       emit_inst ~prefix (Inst.atomic_cmpxchg ~reg ~ptr ~cmp ~exp ~len ~len1 ~loc)
   | Alloca ->
       let reg = xlate_name x instr in
-      let typ = Llvm.get_allocated_type instr |> xlate_type x in
+      let llelt = Llvm.get_allocated_type instr in
+      let typ = xlate_type x llelt in
       let reg = Reg.mk typ (Reg.id reg) (Reg.name reg) in
       let num_elts = Llvm.operand instr 0 in
       let prefix, num = xlate_value x num_elts in
       let num = convert_to_siz (xlate_type x (Llvm.type_of num_elts)) num in
       assert (Poly.(Llvm.classify_type (Llvm.type_of instr) = Pointer)) ;
-      (* TODO(jul): put some rubbish here because of opaque pointers,
-         presumably the size is now part of the alloca instruction
-         itself? *)
-      let len = size_of x (Llvm.i64_type x.llcontext) in
+      (* with opaque pointers, the element type is the allocated type of the
+         alloca, not the pointee type of its result *)
+      let len = size_of x llelt in
       emit_inst ~prefix (Inst.alloc ~reg ~num ~len ~loc)
   | Call -> (
       let llcallee = Llvm.operand instr (Llvm.num_operands instr - 1) in

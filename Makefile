@@ -203,6 +203,7 @@ SWIFT_DIRECT_TESTS += \
   swift_interop-nullability \
   c_export-textual-llvm \
   c_llvm-frontend \
+  c_llvm-frontend-llair \
   c_pulse-llvm
 
 endif

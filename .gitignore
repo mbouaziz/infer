@@ -25,6 +25,7 @@ _build_infer
 *.test.dot
 *.test.print_ullbc
 *.test.sil
+*.llair.text
 *.test.ullbc
 *.test.txt
 duplicates.txt

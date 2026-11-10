@@ -1,0 +1,44 @@
+
+
+
+[ -> None]
+%ptr_elt*  &alloca_vla [None] (%n!18 : i64) { #1 
+    %v!21 : f64 := alloc [%n!18 : i64 x 8];	
+    call &use [None] (%v!21 : %ptr_elt*) returnto %use.void.ret;	
+
+  %use.void.ret: #2
+    return	
+}
+
+[ -> None]
+%ptr_elt*  &alloca_struct_count [None] () { #3 
+    %s!10 : %struct.S := alloc [3 x 12];	
+    call &use [None] (%s!10 : %ptr_elt*) returnto %use.void.ret;	
+
+  %use.void.ret: #4
+    return	
+}
+
+[ -> None]
+%ptr_elt*  &alloca_char [None] () { #5 
+    %c!15 : i8 := alloc [((i64)(s32) 1) x 1];	
+    call &use [None] (%c!15 : %ptr_elt*) returnto %use.void.ret;	
+
+  %use.void.ret: #6
+    return	
+}
+
+[ -> None]
+%ptr_elt*  &alloca_array [None] () { #7 
+    %b!5 : [16 x i8] := alloc [((i64)(s32) 1) x 16];	
+    call &use [None] (%b!5 : %ptr_elt*) returnto %use.void.ret;	
+
+  %use.void.ret: #8
+    return	
+}
+
+[ -> None]
+%ptr_elt*  &use [None] (%0!1 : %ptr_elt*) #9
+
+
+%struct.S
